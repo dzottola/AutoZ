@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="18633" started-at="2016-05-25T18:12:53Z" finished-at="2016-05-25T18:13:12Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="18633" started-at="2016-05-25T18:12:53Z" finished-at="2016-05-25T18:13:12Z">
+      <class name="com.myframework.selenium.FirstTest">
+        <test-method status="PASS" signature="startWebDriver()[pri:0, instance:com.myframework.selenium.FirstTest@17c19fd]" name="startWebDriver" duration-ms="18603" started-at="2016-05-25T15:12:53Z" finished-at="2016-05-25T15:13:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startWebDriver -->
+      </class> <!-- com.myframework.selenium.FirstTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
