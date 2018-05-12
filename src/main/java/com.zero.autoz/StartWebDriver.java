@@ -7,11 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 
 public class StartWebDriver {
-   static WebDriver driver;
+    static WebDriver driver;
 
     @FindBy(how = How.ID, using = "user")
     static WebElement userTextBox;
@@ -19,7 +20,7 @@ public class StartWebDriver {
     @FindBy(how = How.ID, using = "password")
     static WebElement passwordTextBox;
 
-    @FindBy (how = How.XPATH, using = "//button[@type='submit']")
+    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     static WebElement buttonSubmit;
 
     @Test
@@ -39,6 +40,16 @@ public class StartWebDriver {
         userTextBox.sendKeys("User");
         passwordTextBox.sendKeys("fakepass");
         buttonSubmit.click();
+    }
+
+    @AfterMethod
+    public void endTests() {
+        try {
+            driver.close();
+            driver.quit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }
