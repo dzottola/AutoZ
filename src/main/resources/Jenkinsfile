@@ -1,0 +1,23 @@
+def gitlabServer = '192.168.10.195'
+
+node('docker-agent') {
+    timestamps {
+        try {
+            stage('SCM') {
+                git branch: "${env.BRANCH_NAME}", url: "git@${gitlabServer}:${env.FORK_NAME}/alpha-automation.git"
+            }
+
+            stage('Build & Test') {
+
+                try {
+                    sh "mvn clean compile test -X -e -P${env.MVN_Profile} -Denvironment=${env.Environment} -DTestrailRunID=${env.TestRailRunID} -DRemoteWebDriver=${RemoteWebDriver}"
+                } finally {
+                    publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'ExtentReport\\', reportFiles: 'Testing.html', reportName: 'HTML Report', reportTitles: ''])
+                }
+            }
+
+        } finally {
+            cleanWs notFailBuild: false
+        }
+    }
+}
