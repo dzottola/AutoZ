@@ -1,0 +1,34 @@
+node('docker-agent') {
+    timestamps {
+        try {
+
+			stage('Download Selenium Grid HUB Image') {
+                sh "docker pull selenium/hub"
+            }
+
+	        stage('Run Selenium HUB container') {
+                sh "docker run -d --restart always -p 4446:4444 --name selenium-hub -P selenium/hub"
+            }
+
+			stage('Download Chrome Node Image') {
+                sh "docker pull selenium/node-chrome-debug"
+            }
+
+			stage('Download Firefox Node Image') {
+                sh "docker pull selenium/node-firefox-debug"
+            }
+
+			stage('Docker Process') {
+                sh "docker ps"
+            }
+
+			stage('Docker containers active') {
+                sh "docker container ls -a"
+            }
+
+        } finally {
+
+            cleanWs notFailBuild: false
+        }
+    }
+}
