@@ -3,7 +3,8 @@
 <suite name="Suite">
     <test name="Application Test">
         <classes>
-            <class name="com.apc.alphaautomation.backend.apis.scbg.C2630"></class>
+            <class name="com.zero.autoz.Test1"/>
+            <class name="com.zero.autoz.Test2"/>
         </classes>
     </test>
 </suite> <!-- Suite -->

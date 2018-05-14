@@ -2,54 +2,20 @@ package com.zero.autoz;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeSuite;
 
 
 public class StartWebDriver {
-    static WebDriver driver;
+    public static WebDriver driver;
 
-    @FindBy(how = How.ID, using = "user")
-    static WebElement userTextBox;
-
-    @FindBy(how = How.ID, using = "password")
-    static WebElement passwordTextBox;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
-    static WebElement buttonSubmit;
-
-    @Test
-    public void startWebDriver() throws InterruptedException {
-
-
-        WebDriver driver;
+    @BeforeSuite
+    public static void startWebDriver() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.navigate().to("http://localhost:8000/#!/login");
-        PageFactory.initElements(driver, this);
-
+        driver.navigate().to("http://192.168.1.137:5000/");
         System.out.println(driver.getTitle());
-        Thread.sleep(10000);
-
-        //Test
-        userTextBox.sendKeys("User");
-        passwordTextBox.sendKeys("fakepass");
-        buttonSubmit.click();
-    }
-
-    @AfterMethod
-    public void endTests() {
-        try {
-            driver.close();
-            driver.quit();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        driver.close();
     }
 
 }

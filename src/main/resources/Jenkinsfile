@@ -4,7 +4,7 @@ node('docker-agent') {
     timestamps {
         try {
             stage('SCM') {
-                git branch: "${env.BRANCH_NAME}", url: "git@${gitlabServer}:${env.FORK_NAME}/alpha-automation.git"
+                git branch: "master", url: "git@github.com:dzottola/AutoZ.git"
             }
 
             stage('Build & Test') {
